@@ -1,0 +1,23 @@
+{
+  "workers": [
+    {
+      "id": 1,
+      "name": "John Mwangi",
+      "skill": "Electrician",
+      "experience": "3 years",
+      "status": "Available",
+      "rating": 4.5,
+      "image": "https://via.placeholder.com/150"
+    }
+  ],
+
+  "jobs": [
+    {
+      "id": 1,
+      "workerId": 1,
+      "clientName": "Jane Doe",
+      "jobDescription": "Fix kitchen wiring",
+      "status": "In Progress"
+    }
+  ]
+}
