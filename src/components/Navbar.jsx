@@ -23,14 +23,7 @@ export default function Navbar() {
               Admin
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/workerDetails"
-              className={({ isActive }) => (isActive ? styles.activeLink : "")}
-            >
-              WorkerDetails
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               to="/workers"
