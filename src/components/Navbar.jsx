@@ -1,25 +1,46 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./navbar.module.css";
 
 export default function Navbar() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to='/home'>Home</NavLink>
+      <nav className={styles.navbar}>
+        <ul className={styles.navList}>
+          <li className={styles.navItem}>
+            <NavLink
+              to="/home"
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/admin'>Admin</NavLink>
+            <NavLink
+              to="/admin"
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              Admin
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/workerDetails'>WorkerDetails</NavLink>
+            <NavLink
+              to="/workerDetails"
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              WorkerDetails
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/workers'>Workers</NavLink>
+            <NavLink
+              to="/workers"
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              Workers
+            </NavLink>
           </li>
         </ul>
       </nav>
     </div>
-  )
+  );
 }
