@@ -9,20 +9,23 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
-          {/* WorkerDetails uses dynamic route (:id) */}
-          <Route path="/workers/:id" element={<WorkerDetails />} />
-          <Route path="/workers" element={<Workers />} />
-        </Routes>
+
+        <div className="app-content">
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/workers/:id" element={<WorkerDetails />} />
+            <Route path="/workers" element={<Workers />} />
+          </Routes>
+        </div>
+
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
