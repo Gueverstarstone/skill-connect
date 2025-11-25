@@ -1,0 +1,46 @@
+.container {
+  text-align: center;
+  padding: 50px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.roles {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.roleBtn {
+  padding: 15px 30px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.roleBtn:hover {
+  background-color: #45a049;
+}
+
+.admin {
+  background-color: #e53935;
+}
+
+.admin:hover {
+  background-color: #c62828;
+}
