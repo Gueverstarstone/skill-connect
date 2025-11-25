@@ -1,0 +1,39 @@
+.navbar {
+  background-color: #1f2937;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 10px 10px;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  font-family: "Arial", sans-serif;
+}
+
+.navList a {
+  text-decoration: none;
+  color: #e5e7eb;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.navList a:hover {
+  background-color: #374151;
+  color: #fbbf24;
+}
+
+.activeLink {
+  background-color: #476f7d7f;
+  color: #1f2937;
+  font-weight: 600;
+}
