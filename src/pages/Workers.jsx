@@ -7,7 +7,7 @@ export default function Workers() {
   const workerList = [
     { id: 1, name: "Alice" },
     { id: 2, name: "Bob" },
-    { id: 3, name: "Charlie" }
+    { id: 3, name: "Charlie" },
   ];
 
   return (
@@ -19,7 +19,7 @@ export default function Workers() {
 
       {/* Worker list */}
       <ul className={styles.workerList}>
-        {workerList.map(worker => (
+        {workerList.map((worker) => (
           <li key={worker.id} className={styles.workerItem}>
             <Link to={`/workers/${worker.id}`} className={styles.workerLink}>
               {worker.name}
