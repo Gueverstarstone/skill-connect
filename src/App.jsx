@@ -16,7 +16,8 @@ function App() {
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/workerDetails" element={<WorkerDetails />} />
+          {/* WorkerDetails uses dynamic route (:id) */}
+          <Route path="/workers/:id" element={<WorkerDetails />} />
           <Route path="/workers" element={<Workers />} />
         </Routes>
         <Footer />
