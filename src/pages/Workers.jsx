@@ -1,32 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import WorkerCard from "../components/WorkerCard";
 import styles from "./workers.module.css";
 
 export default function Workers() {
-  // Temporary mock data until your API is ready
+  // Mock worker data
   const workerList = [
-    { id: 1, name: "Alice" },
-    { id: 2, name: "Bob" },
-    { id: 3, name: "Charlie" },
+    { id: 1, name: "Alice", job: "Plumber", status: "Active" },
+    { id: 2, name: "Bob", job: "Electrician", status: "Busy" },
+    { id: 3, name: "Charlie", job: "Carpenter", status: "Offline" },
   ];
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Available Workers</h1>
-      <p className={styles.subtitle}>
-        Workers will appear here once integrated with 2ND Member from an API
-      </p>
+      <p className={styles.subtitle}>Select a worker to view details.</p>
 
-      {/* Worker list */}
-      <ul className={styles.workerList}>
-        {workerList.map((worker) => (
-          <li key={worker.id} className={styles.workerItem}>
-            <Link to={`/workers/${worker.id}`} className={styles.workerLink}>
-              {worker.name}
-            </Link>
-          </li>
+      {/* Grid of cards */}
+      <div className={styles.workerGrid}>
+        {workerList.map((w) => (
+          <WorkerCard key={w.id} worker={w} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

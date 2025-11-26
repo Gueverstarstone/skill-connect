@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./admin.module.css";
+import WorkerForm from "../components/WorkerForm";
 
 export default function Admin() {
   return (
@@ -8,6 +9,7 @@ export default function Admin() {
       <p className={styles.subtitle}>
         CRUD panel of workers will be added here by member 2.
       </p>
+      <WorkerForm />
     </div>
   );
 }
