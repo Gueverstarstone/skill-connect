@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import styles from "./workerform.module.css";
 
-/*
-  WorkerForm Component
-  --------------------
-  - For adding or editing workers
-  - You can reuse it inside Admin page later
-  - Uses local state for now (API integration later)
-*/
-
 export default function WorkerForm({ onSubmit }) {
-  // Form state (you will replace with API later)
   const [formData, setFormData] = useState({
     name: "",
-    job: "",
-    status: "Active",
+    experience: "",
+    bio: "",
+    skills: "",
+    completedJobs: "",
+    speciality: "",
+    location: "",
   });
 
-  // Handles text input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,15 +19,37 @@ export default function WorkerForm({ onSubmit }) {
     });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData); // Send data to parent component (Admin)
+
+    // Auto-generate avatar based on name
+    const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+      formData.name
+    )}`;
+
+    const formattedData = {
+      ...formData,
+      profilePicture: avatarUrl,
+      skills: formData.skills.split(",").map((s) => s.trim()),
+    };
+
+    onSubmit(formattedData);
+
+    // Reset form
+    setFormData({
+      name: "",
+      experience: "",
+      bio: "",
+      skills: "",
+      completedJobs: "",
+      speciality: "",
+      location: "",
+    });
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Add / Edit Worker</h2>
+      <h2>Add New Worker</h2>
 
       <label>Name</label>
       <input
@@ -41,26 +57,68 @@ export default function WorkerForm({ onSubmit }) {
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Enter worker name"
+        placeholder="Worker full name"
         required
       />
 
-      <label>Job Title</label>
+      <label>Experience (Years)</label>
+      <input
+        type="number"
+        name="experience"
+        value={formData.experience}
+        onChange={handleChange}
+        placeholder="e.g., 3"
+        required
+      />
+
+      <label>Bio</label>
+      <textarea
+        name="bio"
+        value={formData.bio}
+        onChange={handleChange}
+        placeholder="Short description about the worker"
+        required
+      />
+
+      <label>Skills (comma separated)</label>
       <input
         type="text"
-        name="job"
-        value={formData.job}
+        name="skills"
+        value={formData.skills}
         onChange={handleChange}
-        placeholder="e.g., Plumber, Electrician"
+        placeholder="plumbing, wiring, carpentry"
         required
       />
 
-      <label>Status</label>
-      <select name="status" value={formData.status} onChange={handleChange}>
-        <option>Active</option>
-        <option>Busy</option>
-        <option>Offline</option>
-      </select>
+      <label>Completed Jobs</label>
+      <input
+        type="number"
+        name="completedJobs"
+        value={formData.completedJobs}
+        onChange={handleChange}
+        placeholder="e.g., 15"
+        required
+      />
+
+      <label>Speciality</label>
+      <input
+        type="text"
+        name="speciality"
+        value={formData.speciality}
+        onChange={handleChange}
+        placeholder="e.g., PVC pipe repair"
+        required
+      />
+
+      <label>Location</label>
+      <input
+        type="text"
+        name="location"
+        value={formData.location}
+        onChange={handleChange}
+        placeholder="e.g., Nairobi, Nakuru"
+        required
+      />
 
       <button type="submit" className={styles.submitBtn}>
         Save Worker
