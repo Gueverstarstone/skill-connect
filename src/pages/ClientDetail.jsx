@@ -37,12 +37,14 @@ function ClientDetails() {
       <div className="worker-info-card">
         <h2>About</h2>
 
-        {/* 2 Column About Section */}
-        <div className="about-grid">
-          <p className="worker-description">{client.about || client.text}</p>
+        {/* About text */}
+        <p className="worker-description">{client.about || client.text}</p>
 
-          <div className="about-extra">
-            {client.services && (
+        {/* Two-column section: left = services & languages, right = rate, contact, location */}
+        <div className="two-column-info">
+          {/* LEFT COLUMN */}
+          <div className="left-col">
+            {client.services && client.services.length > 0 && (
               <>
                 <h3>Services</h3>
                 <ul>
@@ -53,10 +55,20 @@ function ClientDetails() {
               </>
             )}
 
-            {client.languages && (
+            {client.languages && client.languages.length > 0 && (
               <>
                 <h3>Languages</h3>
                 <p>{client.languages.join(", ")}</p>
+              </>
+            )}
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="right-col">
+            {client.hourlyRate && (
+              <>
+                <h3>Hourly Rate</h3>
+                <p>{client.hourlyRate}</p>
               </>
             )}
 
@@ -67,25 +79,29 @@ function ClientDetails() {
               </>
             )}
 
-            {client.hourlyRate && (
+            {client.phone && (
               <>
-                <h3>Hourly Rate</h3>
-                <p>{client.hourlyRate}</p>
+                <h3>Contact</h3>
+                <p>
+                  <strong>Phone:</strong> {client.phone}
+                </p>
+              </>
+            )}
+
+            {client.googleMapsLink && (
+              <>
+                <h3>Location</h3>
+                <a
+                  href={client.googleMapsLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View on Google Maps
+                </a>
               </>
             )}
           </div>
         </div>
-
-        {/* Contact Section */}
-        <h3>Contact</h3>
-        <p>
-          <strong>Phone:</strong> {client.phone}
-        </p>
-
-        <h3>Location</h3>
-        <a href={client.googleMapsLink} target="_blank" rel="noreferrer">
-          View on Google Maps
-        </a>
 
         {/* Request Service Button */}
         <button className="client-button request-btn">Request Service</button>
