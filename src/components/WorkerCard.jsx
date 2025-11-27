@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import StatusBadge from "../components/StatusBadge";
+import StatusBadge from "../components/StatusBadge"; // Assuming you want to show status
 import styles from "./workercard.module.css";
 
 /*
   WorkerCard Component
   --------------------
   - Displays basic worker info in a card layout
-  - Accepts worker props { id, name, job, status }
+  - Accepts worker props { id, name, speciality, location, experience }
   - Clicking the "View Details" link redirects to /workers/:id
 */
 
@@ -15,11 +15,17 @@ export default function WorkerCard({ worker }) {
   return (
     <div className={styles.card}>
       <div className={styles.info}>
+        {/* Display worker name */}
         <h3 className={styles.name}>{worker.name}</h3>
-        <p className={styles.job}>{worker.job}</p>
 
-        {/* Status Badge Component */}
-        <StatusBadge status={worker.status} />
+        {/* Specialty displayed as a button */}
+        <button className={styles.specialtyBtn}>
+          {worker.speciality}
+        </button>
+
+        {/* Worker info */}
+        <p className={styles.location}>📍 {worker.location}</p>
+        <p className={styles.experience}>👨‍🔧 {worker.experience} years</p>
       </div>
 
       {/* Opens detailed page */}

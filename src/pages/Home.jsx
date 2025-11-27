@@ -20,27 +20,29 @@ export default function Home() {
 
       <div className={styles.roles}>
         {/* Client Card */}
-        {/* Client Card */}
         <Link to="/workers" className={styles.card}>
-          <h2 className={styles.cardTitle}>I am a Client</h2>
-          <p className={styles.cardText}>
-            Find qualified workers for jobs you need help with or tasks you
-            cannot do yourself.
-          </p>
-
-          <div className={styles.btnWrapper}>
-            <Link to="/workers" className={styles.findBtn}>
-              Find a Worker
-            </Link>
+          <div>
+            <h2 className={styles.cardTitle}>I am a Client</h2>
+            <p className={styles.cardText}>
+              Find qualified workers for jobs you need help with.
+            </p>
+            <div className={styles.btnWrapper}>
+              <span className={styles.findBtn}>Find a Worker</span>
+            </div>
           </div>
         </Link>
 
         {/* Admin Card */}
         <Link to="/admin" className={`${styles.card} ${styles.admin}`}>
-          <h2 className={styles.cardTitle}>Admin Panel</h2>
-          <p className={styles.cardText}>
-            {/* Placeholder — we’ll add admin text later */}
-          </p>
+          <div>
+            <h2 className={styles.cardTitle}>Admin Panel</h2>
+            <p className={styles.cardText}>
+              Manage workers, jobs, and site settings from here.
+            </p>
+            <div className={styles.btnWrapper}>
+              <span className={styles.findBtn}>Go to Admin</span>
+            </div>
+          </div>
         </Link>
       </div>
     </div>
