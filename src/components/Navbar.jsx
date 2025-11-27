@@ -30,7 +30,7 @@ export default function Navbar() {
 
         <li className={styles.navItem}>
           <NavLink
-            to="/workers"
+            to="/clients"
             className={({ isActive }) =>
               isActive ? `${styles.link} ${styles.activeLink}` : styles.link
             }

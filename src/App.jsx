@@ -6,20 +6,24 @@ import WorkerDetails from "./pages/WorkerDetails";
 import Workers from "./pages/Workers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Clients from "./pages/Clients";
+import ClientDetail from './pages/ClientDetail'
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="app-container">
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
+        <Header />
 
         <div className="app-content">
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/workers/:id" element={<WorkerDetails />} />
-            <Route path="/workers" element={<Workers />} />
+            <Route path="/ClientsData/:id" element={<ClientDetail />} />
+            <Route path="/clients" element={<Clients />} />
           </Routes>
         </div>
 

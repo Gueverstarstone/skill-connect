@@ -4,6 +4,7 @@ import styles from "./home.module.css";
 
 export default function Home() {
   return (
+    
     <div className={styles.container}>
       <h1 className={styles.titleSpan}>
         Connect with Skilled Professionals Instantly
@@ -21,7 +22,7 @@ export default function Home() {
       <div className={styles.roles}>
         {/* Client Card */}
         {/* Client Card */}
-        <Link to="/workers" className={styles.card}>
+        <Link to="/clients" className={styles.card}>
           <h2 className={styles.cardTitle}>I am a Client</h2>
           <p className={styles.cardText}>
             Find qualified workers for jobs you need help with or tasks you
@@ -29,7 +30,7 @@ export default function Home() {
           </p>
 
           <div className={styles.btnWrapper}>
-            <Link to="/workers" className={styles.findBtn}>
+            <Link to="/clients" className={styles.findBtn}>
               Find a Worker
             </Link>
           </div>
