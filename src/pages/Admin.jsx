@@ -7,8 +7,6 @@ import styles from "./admin.module.css";
 export default function Admin() {
   const [workers, setWorkers] = useState([]);
   const [editingWorker, setEditingWorker] = useState(null);
-  
-  // Ref for the form
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -38,10 +36,16 @@ export default function Admin() {
 
   const handleEdit = (worker) => {
     setEditingWorker(worker);
-
-    // Scroll to the form
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleDelete = (id) => {
+    // Confirm before deleting
+    if (window.confirm("Are you sure you want to delete this worker?")) {
+      setWorkers(workers.filter((w) => w.id !== id));
+      // TODO: call backend delete API if using a real backend
     }
   };
 
@@ -49,7 +53,6 @@ export default function Admin() {
     <div className={styles.container}>
       <h1>Admin Dashboard</h1>
 
-      {/* Wrap WorkerForm with ref */}
       <div ref={formRef}>
         <WorkerForm
           key={editingWorker ? editingWorker.id : "new"}
@@ -63,9 +66,19 @@ export default function Admin() {
         {workers.map((w) => (
           <div key={w.id} style={{ position: "relative" }}>
             <Clientpage {...w} />
-            <button onClick={() => handleEdit(w)} className={styles.editBtn}>
-              Edit
-            </button>
+
+            <div style={{ position: "absolute", top: "10px", right: "10px", display: "flex", flexDirection: "column", gap: "5px" }}>
+              <button onClick={() => handleEdit(w)} className={styles.editBtn}>
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(w.id)}
+                className={styles.deleteBtn}
+                style={{ backgroundColor: "red", color: "white", border: "none", padding: "5px 10px", borderRadius: "4px", cursor: "pointer" }}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>

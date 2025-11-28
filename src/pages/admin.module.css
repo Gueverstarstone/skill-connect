@@ -48,3 +48,23 @@ h1{
   background-color: #1e7e34; /* darker green on hover */
   transform: scale(1.05);
 }
+.deleteBtn {
+  position: absolute;
+  top: 50px; /* slightly below the edit button */
+  right: 10px;
+  padding: 5px 12px;
+  background-color: #dc2626; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.deleteBtn:hover {
+  background-color: #b91c1c; /* darker red on hover */
+  transform: scale(1.05);
+}
+
