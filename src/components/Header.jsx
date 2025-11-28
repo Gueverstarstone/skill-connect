@@ -15,7 +15,7 @@ function Header() {
 
           <div className="nav_header-text">
             <span className="nav_header-tagline">SKILL-CONNECT</span>
-            <h2 className="header_title">Browse Clients</h2>
+            <h2 className="header_title">Browse Workers</h2>
             <p className="header_subtitle">
               Find trusted professionals and services near you.
             </p>

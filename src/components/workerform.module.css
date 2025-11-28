@@ -1,95 +1,90 @@
-/* Form container */
 .form {
-  background: #ffffff;
-  padding: 30px;
-  max-width: 600px;
-  margin: 30px auto;
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #fff;
   border-radius: 12px;
-
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e5e5;
-
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Form title */
 .form h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.6rem;
-  color: #0b3c5d;
-  font-weight: 700;
-}
-
-/* Labels */
-.form label {
-  margin-top: 12px;
-  margin-bottom: 6px;
-  font-weight: 600;
+  font-size: 1.5rem;
   color: #333;
-  font-size: 0.95rem;
 }
 
-/* Inputs & Textareas */
-.form input,
-.form textarea {
-  width: 100%;
-  padding: 12px;
+/* Row layout */
+.row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 
+.row > div {
+  flex: 1 1 45%; /* two per row */
+  min-width: 200px;
+}
+
+.full-width {
+  flex: 1 1 100%;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.95rem;
-  background: #fafafa;
-
-  transition: border 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
 }
 
-/* Input & textarea focus effects */
-.form input:focus,
-.form textarea:focus {
-  border-color: #0b3c5d;
-  background-color: #fff;
+input:focus,
+textarea:focus {
+  border-color: #28a745;
   outline: none;
 }
 
-/* Textarea sizing */
-.form textarea {
-  min-height: 90px;
+textarea {
   resize: vertical;
+  min-height: 60px;
 }
 
-/* Submit button */
 .submitBtn {
-  margin-top: 20px;
-  padding: 12px 0;
-
-  background: #0b3c5d;
-  color: #ffffff;
-
+  padding: 10px 0;
+  background-color: #28a745;
+  color: #fff;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Button hover */
 .submitBtn:hover {
-  background: #094866;
-  transform: translateY(-2px);
+  background-color: #1e7e34;
+  transform: scale(1.02);
 }
 
-/* Button active press effect */
-.submitBtn:active {
-  transform: translateY(0px);
-}
-
-/* Responsive adjustments */
-@media (max-width: 500px) {
-  .form {
-    padding: 20px;
+/* Responsive for small screens */
+@media (max-width: 600px) {
+  .row > div {
+    flex: 1 1 100%;
   }
 }

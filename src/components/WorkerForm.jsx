@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./workerform.module.css";
 
-export default function WorkerForm({ onSubmit }) {
+export default function WorkerForm({ onSubmit, initialData }) {
   const [formData, setFormData] = useState({
     name: "",
+    title: "",
+    country: "",
+    imgSrc: "",
+    phone: "",
+    ratings: "",
     experience: "",
-    bio: "",
-    skills: "",
-    completedJobs: "",
-    speciality: "",
-    location: "",
+    about: "",
+    services: "",
+    languages: "",
+    availability: "",
+    hourlyRate: "",
+    googleMapsLink: "",
   });
+
+  // Pre-fill form if editing
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        name: initialData.name || "",
+        title: initialData.title || "",
+        country: initialData.country || "",
+        imgSrc: initialData.img?.src || "",
+        phone: initialData.phone || "",
+        ratings: initialData.ratings || "",
+        experience: initialData.experience || "",
+        about: initialData.about || "",
+        services: initialData.services?.join(", ") || "",
+        languages: initialData.languages?.join(", ") || "",
+        availability: initialData.availability || "",
+        hourlyRate: initialData.hourlyRate || "",
+        googleMapsLink: initialData.googleMapsLink || "",
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,106 +49,197 @@ export default function WorkerForm({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Auto-generate avatar based on name
-    const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
-      formData.name
-    )}`;
-
-    const formattedData = {
+    // Build object in Clientpage format
+    const formattedWorker = {
       ...formData,
-      profilePicture: avatarUrl,
-      skills: formData.skills.split(",").map((s) => s.trim()),
+      img: { src: formData.imgSrc },
+      services: formData.services.split(",").map((s) => s.trim()),
+      languages: formData.languages.split(",").map((l) => l.trim()),
     };
 
-    onSubmit(formattedData);
+    onSubmit(formattedWorker);
 
-    // Reset form
-    setFormData({
-      name: "",
-      experience: "",
-      bio: "",
-      skills: "",
-      completedJobs: "",
-      speciality: "",
-      location: "",
-    });
+    // Reset form after adding new worker (not editing)
+    if (!initialData) {
+      setFormData({
+        name: "",
+        title: "",
+        country: "",
+        imgSrc: "",
+        phone: "",
+        ratings: "",
+        experience: "",
+        about: "",
+        services: "",
+        languages: "",
+        availability: "",
+        hourlyRate: "",
+        googleMapsLink: "",
+      });
+    }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Add New Worker</h2>
+      <h2>{initialData ? "Edit Worker" : "Add New Worker"}</h2>
 
-      <label>Name</label>
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Worker full name"
-        required
-      />
+      <div className={styles.row}>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Worker full name"
+            required
+          />
+        </div>
+        <div>
+          <label>Title / Profession</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="e.g., Software Developer"
+            required
+          />
+        </div>
+      </div>
 
-      <label>Experience (Years)</label>
-      <input
-        type=""
-        name="experience"
-        value={formData.experience}
-        onChange={handleChange}
-        placeholder="e.g., 3 years"
-        required
-      />
+      <div className={styles.row}>
+        <div>
+          <label>Country / Location</label>
+          <input
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+            placeholder="e.g., Kenya"
+          />
+        </div>
+        <div>
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+254-234-567-890"
+          />
+        </div>
+      </div>
 
-      <label>Bio</label>
-      <textarea
-        name="bio"
-        value={formData.bio}
-        onChange={handleChange}
-        placeholder="Short description about the worker"
-        required
-      />
+      <div className={styles.row}>
+        <div className={styles["full-width"]}>
+          <label>Image URL</label>
+          <input
+            type="text"
+            name="imgSrc"
+            value={formData.imgSrc}
+            onChange={handleChange}
+            placeholder="e.g., assets/software_developer.jpg"
+          />
+        </div>
+      </div>
 
-      <label>Skills (comma separated)</label>
-      <input
-        type="text"
-        name="skills"
-        value={formData.skills}
-        onChange={handleChange}
-        placeholder="plumbing, wiring, carpentry"
-        required
-      />
+      <div className={styles.row}>
+        <div>
+          <label>Ratings</label>
+          <input
+            type="text"
+            name="ratings"
+            value={formData.ratings}
+            onChange={handleChange}
+            placeholder="e.g., 4.5"
+          />
+        </div>
+        <div>
+          <label>Experience</label>
+          <input
+            type="text"
+            name="experience"
+            value={formData.experience}
+            onChange={handleChange}
+            placeholder="e.g., 3 years"
+          />
+        </div>
+      </div>
 
-      <label>Completed Jobs</label>
-      <input
-        type="number"
-        name="completedJobs"
-        value={formData.completedJobs}
-        onChange={handleChange}
-        placeholder="e.g., 15"
-        required
-      />
+      <div className={styles.row}>
+        <div className={styles["full-width"]}>
+          <label>About / Bio</label>
+          <textarea
+            name="about"
+            value={formData.about}
+            onChange={handleChange}
+            placeholder="Short description about the worker"
+          ></textarea>
+        </div>
+      </div>
 
-      <label>Speciality</label>
-      <input
-        type="text"
-        name="speciality"
-        value={formData.speciality}
-        onChange={handleChange}
-        placeholder="e.g., PVC pipe repair"
-        required
-      />
+      <div className={styles.row}>
+        <div>
+          <label>Services (comma separated)</label>
+          <input
+            type="text"
+            name="services"
+            value={formData.services}
+            onChange={handleChange}
+            placeholder="Web development, API integration"
+          />
+        </div>
+        <div>
+          <label>Languages (comma separated)</label>
+          <input
+            type="text"
+            name="languages"
+            value={formData.languages}
+            onChange={handleChange}
+            placeholder="English, Swahili"
+          />
+        </div>
+      </div>
 
-      <label>Location</label>
-      <input
-        type="text"
-        name="location"
-        value={formData.location}
-        onChange={handleChange}
-        placeholder="e.g., Nairobi, Nakuru"
-        required
-      />
+      <div className={styles.row}>
+        <div>
+          <label>Availability</label>
+          <input
+            type="text"
+            name="availability"
+            value={formData.availability}
+            onChange={handleChange}
+            placeholder="e.g., Mon–Fri, 8am–6pm"
+          />
+        </div>
+        <div>
+          <label>Hourly Rate</label>
+          <input
+            type="text"
+            name="hourlyRate"
+            value={formData.hourlyRate}
+            onChange={handleChange}
+            placeholder="e.g., KSh 1,500/hr"
+          />
+        </div>
+      </div>
+
+      <div className={styles.row}>
+        <div className={styles["full-width"]}>
+          <label>Google Maps Link</label>
+          <input
+            type="text"
+            name="googleMapsLink"
+            value={formData.googleMapsLink}
+            onChange={handleChange}
+            placeholder="https://www.google.com/maps/..."
+          />
+        </div>
+      </div>
 
       <button type="submit" className={styles.submitBtn}>
-        Save Worker
+        {initialData ? "Update Worker" : "Save Worker"}
       </button>
     </form>
   );
