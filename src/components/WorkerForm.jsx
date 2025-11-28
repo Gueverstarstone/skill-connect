@@ -63,11 +63,11 @@ export default function WorkerForm({ onSubmit }) {
 
       <label>Experience (Years)</label>
       <input
-        type="number"
+        type=""
         name="experience"
         value={formData.experience}
         onChange={handleChange}
-        placeholder="e.g., 3"
+        placeholder="e.g., 3 years"
         required
       />
 

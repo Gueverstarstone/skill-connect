@@ -1,23 +1,74 @@
 {
   "workers": [
     {
-      "id": 1,
-      "name": "John Mwangi",
-      "skill": "Electrician",
+      "id": "1",
+      "name": "John Kamau",
+      "category": "Plumber",
+      "experience": "5 years",
+      "location": "Nairobi, Kenya",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+      "rating": 4.8,
+      "bio": "Experienced plumber specializing in residential and commercial installations. Licensed and insured with a focus on quality workmanship.",
+      "skills": [
+        "Pipe Installation",
+        "Leak Repair",
+        "Water Heater",
+        "Drainage Systems"
+      ],
+      "completedJobs": 127
+    },
+    {
+      "id": "8917",
+      "name": "David Otieno",
       "experience": "3 years",
-      "status": "Available",
-      "rating": 4.5,
-      "image": "https://via.placeholder.com/150"
+      "bio": "Reliable cleaning service provider for homes and offices. Thorough and professional approach.",
+      "skills": [
+        "Deep Cleaning",
+        "Office Cleaning",
+        "Move-out Cleaning",
+        "Sanitization"
+      ],
+      "completedJobs": "18",
+      "speciality": "Secretary",
+      "location": "Karen",
+      "profilePicture": "https://api.dicebear.com/7.x/avataaars/svg?seed=David%20Otieno"
+    },
+    {
+      "id": "d311",
+      "name": "Gueverstarstone Mungai",
+      "experience": "5 years",
+      "bio": "A hardworking man and good at what he is doing.",
+      "skills": [
+        "Web design",
+        "coding",
+        "computer repair"
+      ],
+      "completedJobs": "15",
+      "speciality": "Software Engineering",
+      "location": "Bungoma",
+      "profilePicture": "https://api.dicebear.com/7.x/avataaars/svg?seed=Gueverstarstone%20Mungai"
     }
   ],
-
   "jobs": [
     {
-      "id": 1,
-      "workerId": 1,
-      "clientName": "Jane Doe",
-      "jobDescription": "Fix kitchen wiring",
-      "status": "In Progress"
+      "id": "1",
+      "title": "Fix leaking kitchen sink",
+      "category": "Plumber",
+      "workerId": "1",
+      "clientName": "Alice Mutua",
+      "location": "Westlands, Nairobi",
+      "description": "Replace old faucet and repair leaks under the sink",
+      "date": "2025-11-28",
+      "status": "Accepted"
+    }
+  ],
+  "users": [
+    {
+      "id": "admin1",
+      "email": "admin@skill-connect.com",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Admin User"
     }
   ]
 }
