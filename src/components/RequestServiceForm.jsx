@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { createRequest } from "../api/api"; // import your API function
 import styles from "./requestServiceForm.module.css";
 
-export default function RequestServiceForm({ onSubmit, onClose }) {
+export default function RequestServiceForm({ onClose }) {
   const [formData, setFormData] = useState({
     clientName: "",
     phone: "",
@@ -9,25 +10,47 @@ export default function RequestServiceForm({ onSubmit, onClose }) {
     jobDescription: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { clientName, phone, location, jobDescription } = formData;
+
     if (!clientName || !phone || !location || !jobDescription) {
       alert("Please fill all fields");
       return;
     }
-    onSubmit(formData);
-    setFormData({ clientName: "", phone: "", location: "", jobDescription: "" });
+
+    try {
+      setLoading(true);
+      setError("");
+      const savedRequest = await createRequest(formData);
+      alert("Request submitted successfully!");
+      console.log("Saved request:", savedRequest);
+
+      // Reset form
+      setFormData({ clientName: "", phone: "", location: "", jobDescription: "" });
+
+      // Close modal if needed
+      onClose();
+    } catch (err) {
+      console.error(err);
+      setError("Failed to submit request. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <h2>Request Service</h2>
+        {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <label>Client Name</label>
           <input
@@ -69,7 +92,9 @@ export default function RequestServiceForm({ onSubmit, onClose }) {
           />
 
           <div className={styles.buttons}>
-            <button type="submit">Submit Request</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Submitting..." : "Submit Request"}
+            </button>
             <button type="button" onClick={onClose} className={styles.closeBtn}>
               Cancel
             </button>
