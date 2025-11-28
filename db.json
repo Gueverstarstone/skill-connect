@@ -1,74 +1,166 @@
 {
   "workers": [
     {
-      "id": "1",
-      "name": "John Kamau",
-      "category": "Plumber",
-      "experience": "5 years",
-      "location": "Nairobi, Kenya",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
-      "rating": 4.8,
-      "bio": "Experienced plumber specializing in residential and commercial installations. Licensed and insured with a focus on quality workmanship.",
-      "skills": [
-        "Pipe Installation",
-        "Leak Repair",
-        "Water Heater",
-        "Drainage Systems"
+      "id": 1,
+      "name": "Joseph Mungai",
+      "title": "Software Developer",
+      "country": "Kenya",
+      "img": {
+        "src": "assets/software_developer.jpg",
+        "alt": "Software Developer"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "4.2",
+      "experience": "3 years experience",
+      "summary": "A software developer who designs and builds applications for clients and businesses.",
+      "about": "Joseph is a full-stack developer with experience in React, Node.js, and PostgreSQL. He has worked on multiple client projects in e-commerce, fintech, and logistics.",
+      "services": [
+        "Web application development",
+        "API integration",
+        "Bug fixing & optimization"
       ],
-      "completedJobs": 127
+      "languages": ["English", "Swahili"],
+      "availability": "Available for new projects",
+      "hourlyRate": "Ksh. 3,500/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
     },
+
     {
-      "id": "8917",
-      "name": "David Otieno",
-      "experience": "3 years",
-      "bio": "Reliable cleaning service provider for homes and offices. Thorough and professional approach.",
-      "skills": [
-        "Deep Cleaning",
-        "Office Cleaning",
-        "Move-out Cleaning",
-        "Sanitization"
+      "id": 2,
+      "name": "Philip Kamau",
+      "title": "Plumber",
+      "country": "Kenya",
+      "img": {
+        "src": "assets/Plumber.jpg",
+        "alt": "Plumber"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "5.0",
+      "experience": "15 years experience",
+      "summary": "Expert plumber specializing in pipe installation, drainage systems, and emergency repairs.",
+      "about": "Philip is a certified plumber with over 12 years of experience handling domestic and commercial plumbing systems. He has completed over 350 projects including bathroom installations, drainage repairs, water tank setups, and emergency pipe fixes across Nairobi.",
+      "services": [
+        "Emergency plumbing repairs",
+        "Leak detection & pipe fixing",
+        "Bathroom & toilet installation",
+        "Drainage system unclogging",
+        "Water tank installation",
+        "General plumbing maintenance"
       ],
-      "completedJobs": "18",
-      "speciality": "Secretary",
-      "location": "Karen",
-      "profilePicture": "https://api.dicebear.com/7.x/avataaars/svg?seed=David%20Otieno"
+      "languages": ["English", "Swahili"],
+      "availability": "Available 6 days a week (Mon–Sat)",
+      "hourlyRate": "KSh 1,500/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
     },
+
     {
-      "id": "d311",
-      "name": "Gueverstarstone Mungai",
-      "experience": "5 years",
-      "bio": "A hardworking man and good at what he is doing.",
-      "skills": [
-        "Web design",
-        "coding",
-        "computer repair"
+      "id": 3,
+      "name": "Brian Melita",
+      "title": "Lawyer",
+      "country": "Kajiado",
+      "img": {
+        "src": "assets/lawyer.jpeg",
+        "alt": "Lawyer"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "4.9",
+      "experience": "7 years experience",
+      "summary": "Experienced advocate specializing in family law, contracts, and corporate legal advisory.",
+      "about": "Sarah is an Advocate of the High Court of Kenya with over 8 years of experience in family, corporate, and commercial law. She has represented clients in divorce and child custody matters, drafted contracts for SMEs, and advised startups on compliance and regulatory issues.",
+      "services": [
+        "Divorce and child custody matters",
+        "Drafting & reviewing contracts",
+        "Company registration & compliance",
+        "Employment and labour law advisory",
+        "Debt recovery and demand letters",
+        "Legal consultation for startups and SMEs"
       ],
-      "completedJobs": "15",
-      "speciality": "Software Engineering",
-      "location": "Bungoma",
-      "profilePicture": "https://api.dicebear.com/7.x/avataaars/svg?seed=Gueverstarstone%20Mungai"
-    }
-  ],
-  "jobs": [
+      "languages": ["English", "Swahili"],
+      "availability": "Available by appointment (Mon–Fri)",
+      "hourlyRate": "KSh 4,000/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
+    },
+
     {
-      "id": "1",
-      "title": "Fix leaking kitchen sink",
-      "category": "Plumber",
-      "workerId": "1",
-      "clientName": "Alice Mutua",
-      "location": "Westlands, Nairobi",
-      "description": "Replace old faucet and repair leaks under the sink",
-      "date": "2025-11-28",
-      "status": "Accepted"
-    }
-  ],
-  "users": [
+      "id": 4,
+      "name": "Mary Mwende",
+      "title": "Electrician",
+      "country": "Naivasha",
+      "img": {
+        "src": "assets/electrician.jpeg",
+        "alt": "Electrician"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "4.5",
+      "experience": "2 years experience",
+      "summary": "Reliable electrician specializing in wiring, lighting installation, and electrical repairs.",
+      "about": "Mary is a certified electrician with 2 years of experience in residential and commercial electrical work. She handles wiring installation, lighting setup, circuit repairs, and electrical safety testing.",
+      "services": [
+        "Electrical wiring (residential & commercial)",
+        "Lighting installation & upgrades",
+        "Circuit breaker repairs",
+        "Electrical fault detection",
+        "Switch & socket installation",
+        "Electrical safety inspection"
+      ],
+      "languages": ["English", "Swahili"],
+      "availability": "Available Mon–Sat, 8am to 6pm",
+      "hourlyRate": "KSh 1,200/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
+    },
+
     {
-      "id": "admin1",
-      "email": "admin@skill-connect.com",
-      "password": "admin123",
-      "role": "admin",
-      "name": "Admin User"
+      "id": 5,
+      "name": "Christine Njoki",
+      "title": "Mama Fua",
+      "country": "Kayole",
+      "img": {
+        "src": "assets/mama_fua.jpeg",
+        "alt": "Mama Fua"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "4.4",
+      "experience": "1 year experience",
+      "summary": "Trusted Mama Fua offering laundry, ironing, and deep cleaning services for homes and apartments.",
+      "about": "Grace is a highly reliable Mama Fua with 6 years of experience providing laundry, ironing, and home cleaning services.",
+      "services": [
+        "Laundry (washing, drying, folding)",
+        "Ironing & garment care",
+        "Deep house cleaning",
+        "Kitchen & bathroom cleaning",
+        "Apartment & bedsitter cleaning",
+        "Office cleaning on request"
+      ],
+      "languages": ["Swahili", "Kikuyu", "Basic English"],
+      "availability": "Available Mon–Sat • 7am–6pm",
+      "hourlyRate": "KSh 300–500/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
+    },
+
+    {
+      "id": 6,
+      "name": "Phineas Lesie",
+      "title": "Boda Boda Rider",
+      "country": "Meru",
+      "img": {
+        "src": "assets/rider.jpeg",
+        "alt": "Boda Boda Rider"
+      },
+      "phone": "+254-234-567-890",
+      "ratings": "4.6",
+      "experience": "4 years experience",
+      "summary": "Reliable boda boda rider offering fast and safe delivery and transport services.",
+      "about": "Phineas has 4 years of experience transporting clients and parcels across Meru town. He is known for punctuality, road safety, and excellent customer service.",
+      "services": [
+        "Parcel delivery",
+        "Passenger transport",
+        "Market errands",
+        "Home delivery services"
+      ],
+      "languages": ["Swahili", "English"],
+      "availability": "Available daily - 6am to 9pm",
+      "hourlyRate": "KSh 300/hr",
+      "googleMapsLink": "https://www.google.com/maps/..."
     }
   ]
 }

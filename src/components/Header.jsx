@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import workers_logo from "../assets/workers_logo.png";
 
 function Header() {
   return (
@@ -10,7 +9,7 @@ function Header() {
         <div className="header-left">
           <img
             className="logo_header"
-            src={workers_logo}
+            src="/assets/workers_logo.png"
             alt="Skill-Connect logo"
           />
 

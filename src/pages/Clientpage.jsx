@@ -1,14 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import location from "../assets/marker.png";
-import fav from "../assets/fav.png";
-import phone from "../assets/phone.png";
 
 function Clientpage(props) {
   const navigate = useNavigate();
 
   const handleViewProfile = () => {
-    navigate(`/Clientsdata/${props.id}`);
+    navigate(`/workers/${props.id}`);
   };
 
   return (
@@ -20,7 +17,7 @@ function Clientpage(props) {
 
         <div className="infoContainer">
           <div>
-            <img className="marker" src={location} alt="marker" />
+            <img className="marker" src="/assets/marker.png" alt="marker" />
             <span className="country">{props.country}</span>
             <a href={props.googleMapsLink}>View on Google maps</a>
           </div>
@@ -31,17 +28,15 @@ function Clientpage(props) {
           </div>
 
           <div className="phone_nav">
-            <img className="phone" src={phone} alt="phone" />
+            <img className="phone" src="/assets/phone.png" alt="phone" />
             <span className="phone_number">{props.phone}</span>
           </div>
 
           <div className="rating_nav">
-            <img className="fav" src={fav} alt="fav" />
+            <img className="fav" src="/assets/fav.png" alt="fav" />
             <span className="ratings">{props.ratings}</span>
             <span className="experience">{props.experience}</span>
           </div>
-
-        
         </div>
       </div>
 

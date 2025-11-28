@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Clientspage from "./Clientpage";
-import clientsAll from "./ClientsData";
 
 function Clients() {
+  const [clients, setClients] = useState([]);
   const [search, setSearch] = useState("");
 
-  const filteredClientsAll = clientsAll.filter((w) => {
+  useEffect(() => {
+    fetch("http://localhost:3000/workers")
+      .then((res) => res.json())
+      .then((data) => setClients(data));
+  }, []);
+
+  const filteredClients = clients.filter((w) => {
     const term = search.toLowerCase();
     return (
       w.name.toLowerCase().includes(term) ||
@@ -16,8 +22,6 @@ function Clients() {
 
   return (
     <>
-      {/* <Header /> */}
-
       <div className="clients-search">
         <input
           type="text"
@@ -28,7 +32,7 @@ function Clients() {
       </div>
 
       <div className="clients-grid">
-        {filteredClientsAll.map((client) => (
+        {filteredClients.map((client) => (
           <Clientspage key={client.id} {...client} />
         ))}
       </div>
