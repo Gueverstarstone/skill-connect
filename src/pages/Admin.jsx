@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import WorkerForm from "../components/WorkerForm";
 import Clientpage from "../pages/Clientpage";
-import { addWorker, getWorkers } from "../api/api";
+import { addWorker, getWorkers, deleteWorker } from "../api/api";
 import styles from "./admin.module.css";
 
 export default function Admin() {
@@ -41,11 +41,15 @@ export default function Admin() {
     }
   };
 
-  const handleDelete = (id) => {
-    // Confirm before deleting
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this worker?")) {
-      setWorkers(workers.filter((w) => w.id !== id));
-      // TODO: call backend delete API if using a real backend
+      try {
+        await deleteWorker(id); // delete from backend
+        setWorkers(workers.filter((w) => w.id !== id)); // update UI
+      } catch (error) {
+        console.error("Error deleting worker:", error);
+        alert("Failed to delete. Check server.");
+      }
     }
   };
 
@@ -67,14 +71,30 @@ export default function Admin() {
           <div key={w.id} style={{ position: "relative" }}>
             <Clientpage {...w} />
 
-            <div style={{ position: "absolute", top: "10px", right: "10px", display: "flex", flexDirection: "column", gap: "5px" }}>
+            <div
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+              }}
+            >
               <button onClick={() => handleEdit(w)} className={styles.editBtn}>
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(w.id)}
                 className={styles.deleteBtn}
-                style={{ backgroundColor: "red", color: "white", border: "none", padding: "5px 10px", borderRadius: "4px", cursor: "pointer" }}
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  border: "none",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
               >
                 Delete
               </button>
