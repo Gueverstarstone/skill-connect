@@ -49,17 +49,26 @@ export default function WorkerForm({ onSubmit, initialData }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Build object in Clientpage format
+    // Build correct object (NO DUPLICATE IMAGES)
     const formattedWorker = {
-      ...formData,
-      img: { src: formData.imgSrc },
+      name: formData.name,
+      title: formData.title,
+      country: formData.country,
+      phone: formData.phone,
+      ratings: formData.ratings,
+      experience: formData.experience,
+      about: formData.about,
       services: formData.services.split(",").map((s) => s.trim()),
       languages: formData.languages.split(",").map((l) => l.trim()),
+      availability: formData.availability,
+      hourlyRate: formData.hourlyRate,
+      googleMapsLink: formData.googleMapsLink,
+      img: { src: formData.imgSrc },
     };
 
     onSubmit(formattedWorker);
 
-    // Reset form after adding new worker (not editing)
+    // Reset if adding new worker
     if (!initialData) {
       setFormData({
         name: "",
@@ -187,7 +196,7 @@ export default function WorkerForm({ onSubmit, initialData }) {
             name="services"
             value={formData.services}
             onChange={handleChange}
-            placeholder="Web development, API integration"
+            placeholder="Web dev, API integration"
           />
         </div>
         <div>
@@ -210,7 +219,7 @@ export default function WorkerForm({ onSubmit, initialData }) {
             name="availability"
             value={formData.availability}
             onChange={handleChange}
-            placeholder="e.g., Mon–Fri, 8am–6pm"
+            placeholder="Mon–Fri, 8am–6pm"
           />
         </div>
         <div>
@@ -220,7 +229,7 @@ export default function WorkerForm({ onSubmit, initialData }) {
             name="hourlyRate"
             value={formData.hourlyRate}
             onChange={handleChange}
-            placeholder="e.g., KSh 1,500/hr"
+            placeholder="KSh 1,200/hr"
           />
         </div>
       </div>

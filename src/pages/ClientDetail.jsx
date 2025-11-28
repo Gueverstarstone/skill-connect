@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RequestServiceForm from "../components/RequestServiceForm"; // import the form
 
 function ClientDetails() {
   const { id } = useParams();
   const [client, setClient] = useState(null);
+  const [showForm, setShowForm] = useState(false); // state to toggle form
 
   useEffect(() => {
     fetch(`http://localhost:3000/workers/${id}`)
@@ -16,6 +18,29 @@ function ClientDetails() {
     return <div style={{ padding: 20 }}>Client not found.</div>;
   }
 
+  // Handle form submission
+  const handleRequestSubmit = (formData) => {
+    const newRequest = {
+      id: Date.now(), // unique id for request
+      workerId: client.id,
+      workerName: client.name,
+      workerTitle: client.title,
+      clientName: formData.clientName,
+      clientPhone: formData.phone,
+      location: formData.location,
+      jobDescription: formData.jobDescription,
+      status: "Pending",
+    };
+
+    // Save request to localStorage (or send to backend)
+    const savedRequests = JSON.parse(localStorage.getItem("serviceRequests")) || [];
+    savedRequests.push(newRequest);
+    localStorage.setItem("serviceRequests", JSON.stringify(savedRequests));
+
+    alert("Request submitted successfully!");
+    setShowForm(false); // close the form
+  };
+
   return (
     <div className="worker-details-container">
       {/* Top Header */}
@@ -25,11 +50,9 @@ function ClientDetails() {
           src={client.img.src}
           alt={client.img.alt}
         />
-
         <div className="worker-header-info">
           <h1 className="worker-name">{client.name}</h1>
           <p className="worker-title">{client.title}</p>
-
           <div className="worker-meta">
             <span className="worker-rating">⭐ {client.ratings}</span>
             <span className="worker-experience">{client.experience}</span>
@@ -72,7 +95,20 @@ function ClientDetails() {
           </div>
         </div>
 
-        <button className="client-button request-btn">Request Service</button>
+        <button
+          className="client-button request-btn"
+          onClick={() => setShowForm(true)}
+        >
+          Request Service
+        </button>
+
+        {/* Show the form modal */}
+        {showForm && (
+          <RequestServiceForm
+            onSubmit={handleRequestSubmit}
+            onClose={() => setShowForm(false)}
+          />
+        )}
       </div>
     </div>
   );

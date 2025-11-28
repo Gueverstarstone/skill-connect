@@ -61,3 +61,14 @@ export const updateJobStatus = async (id, status) => {
     throw error;
   }
 };
+export async function deleteWorker(id) {
+  const res = await fetch(`http://localhost:3000/workers/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete worker");
+  }
+
+  return true;
+}
