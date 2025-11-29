@@ -175,9 +175,59 @@
       "availability": "Available daily - 6am to 9pm",
       "hourlyRate": "KSh 300/hr",
       "googleMapsLink": "https://www.google.com/maps/..."
+    },
+    {
+      "id": "bcbd",
+      "name": "Mufasa",
+      "title": "Gym Trainer",
+      "country": "Gilgil",
+      "phone": "+254-234-567-890",
+      "ratings": "3.5",
+      "experience": "1 year",
+      "about": "Why Work With A PT | TotalFusion Luxury Health & Wellness ClubA gym trainer, or personal trainer, is a professional who helps clients achieve their fitness goals by creating and guiding them through customized workout plans, providing motivation",
+      "services": [
+        "personalized workout plans",
+        "one-on-one or group training sessions",
+        "and nutritional guidance"
+      ],
+      "languages": [
+        "English",
+        "Swahili"
+      ],
+      "availability": "Available for new projects",
+      "hourlyRate": "Ksh. 3,500/hr",
+      "googleMapsLink": "https://www.google.com/maps/...",
+      "img": {
+        "src": "https://media.istockphoto.com/id/1849345050/photo/personal-instructor-and-athletic-woman-going-through-exercise-plans-in-a-gym.jpg?s=612x612&w=0&k=20&c=iGI2Se15zweVTHt31ENGqeXJlGcagS_XUqMhB_g8mvU="
+      }
     }
   ],
-  "requests": [],
+  "requests": [
+    {
+      "id": "1a4b",
+      "workerId": "1",
+      "workerName": "Joseph Mungai",
+      "speciality": "Software Developer",
+      "clientName": "sadsad",
+      "phone": "0711727265",
+      "location": "dsfsdfd",
+      "jobDescription": "werwerwer",
+      "status": "completed",
+      "date": "2025-11-29T07:58:17.561Z"
+    },
+    {
+      "id": "72cc",
+      "workerId": "5",
+      "workerName": "Christine Njoki",
+      "speciality": "Mama Fua",
+      "clientName": "Munga",
+      "phone": "0716494310",
+      "location": "Mwea",
+      "jobDescription": "I want my house all all in it washed.",
+      "status": "pending",
+      "date": "2025-11-29T17:15:36.772Z"
+    }
+  ],
   "archivedRequests": [
     {
       "id": "847c",
@@ -188,20 +238,20 @@
       "phone": "0711727265",
       "location": "Karen",
       "jobDescription": "I want my toilet sit fixed",
-      "status": "in-progress",
+      "status": "completed",
       "date": "2025-11-29T07:39:47.452Z"
     },
     {
-      "id": "f76d",
-      "workerId": "6",
-      "workerName": "Phineas Lesie",
-      "speciality": "Boda Boda Rider",
-      "clientName": "Zuri",
-      "phone": "0711727265",
-      "location": "Mogadishu",
-      "jobDescription": "Bomb Delivery",
+      "id": "c447",
+      "workerId": "1",
+      "workerName": "Joseph Mungai",
+      "speciality": "Software Developer",
+      "clientName": "wafula",
+      "phone": "4552263568",
+      "location": "Wantam",
+      "jobDescription": "jsdgusdg",
       "status": "completed",
-      "date": "2025-11-29T09:01:14.851Z"
+      "date": "2025-11-29T17:12:43.490Z"
     }
   ]
 }

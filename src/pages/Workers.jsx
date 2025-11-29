@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getWorkers } from "../api/api";
-import WorkerCard from "../components/WorkerCard";
+// import WorkerCard from "../components/WorkerCard";
 import styles from "./workers.module.css";
 
 export default function Workers() {
