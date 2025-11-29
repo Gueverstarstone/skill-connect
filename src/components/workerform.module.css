@@ -26,7 +26,7 @@
 }
 
 .row > div {
-  flex: 1 1 45%; /* two per row */
+  flex: 1 1 45%;
   min-width: 200px;
 }
 

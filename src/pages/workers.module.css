@@ -1,11 +1,9 @@
-/* Container for the page */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Page title */
 .title {
   text-align: center;
   font-size: 2rem;
@@ -13,18 +11,16 @@
   color: #333;
 }
 
-/* Grid layout for worker cards */
 .workerGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Keeps responsive cards */
-  gap: 30px; /* Increased gap between the cards */
-  padding: 20px; /* Adds padding around the grid */
-  justify-items: center; /* Centers the cards horizontally */
-  align-items: start; /* Aligns cards at the top in the grid cells */
-  grid-auto-rows: minmax(350px, auto); /* Ensures all rows have at least 350px of height, which helps equalize card heights */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
+  align-items: start;
+  grid-auto-rows: minmax(350px, auto);
 }
 
-/* Individual worker card */
 .workerCard {
   background-color: #fff;
   border-radius: 12px;
@@ -35,9 +31,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 100%; /* Ensures card takes full width of grid cell */
-  height: 100%; /* Ensures all cards stretch to the same height */
-  box-sizing: border-box; /* Makes sure padding and border are included in the card's width and height */
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .workerCard:hover {
@@ -45,7 +41,6 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Avatar image */
 .workerCard img {
   width: 100px;
   height: 100px;
@@ -55,14 +50,12 @@
   border: 2px solid #0077ff;
 }
 
-/* Worker name */
 .workerCard h3 {
   font-size: 1.3rem;
   margin-bottom: 5px;
   color: #222;
 }
 
-/* Worker speciality/category button */
 .workerCard button.specialtyBtn {
   background-color: #0077ff;
   color: white;
@@ -79,7 +72,6 @@
   background-color: #005bb5;
 }
 
-/* Worker info (Location and Experience) */
 .workerCard .location,
 .workerCard .experience {
   font-size: 0.9rem;
@@ -87,7 +79,6 @@
   margin-bottom: 5px;
 }
 
-/* View Details button */
 .workerCard .detailsBtn {
   background-color: #0077ff;
   color: white;
@@ -105,7 +96,6 @@
   background-color: #005bb5;
 }
 
-/* Status badges for jobs */
 .pendingBadge {
   background-color: #ffc107;
   color: #212529;

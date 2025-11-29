@@ -40,7 +40,7 @@ export default function Navbar() {
           </NavLink>
         </li>
 
-        {/* Worker dashboard */}
+        {/* Worker/request dashboard */}
         <li className={styles.navItem}>
           <NavLink
             to="/requests"

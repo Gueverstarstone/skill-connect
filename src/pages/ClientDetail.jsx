@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import RequestServiceForm from "../components/RequestServiceForm"; // import the form
+import RequestServiceForm from "../components/RequestServiceForm";
 
 function ClientDetails() {
   const { id } = useParams();
   const [client, setClient] = useState(null);
-  const [showForm, setShowForm] = useState(false); // state to toggle form
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/workers/${id}`)
@@ -63,7 +63,9 @@ function ClientDetails() {
             <p>{client.availability}</p>
 
             <h3>Contact</h3>
-            <p><strong>Phone:</strong> {client.phone}</p>
+            <p>
+              <strong>Phone:</strong> {client.phone}
+            </p>
 
             <h3>Location</h3>
             <a href={client.googleMapsLink} target="_blank" rel="noreferrer">
@@ -82,7 +84,7 @@ function ClientDetails() {
         {/* Show the form modal */}
         {showForm && (
           <RequestServiceForm
-            worker={client}     // 🔥 IMPORTANT — added worker info
+            worker={client}
             onClose={() => setShowForm(false)}
           />
         )}

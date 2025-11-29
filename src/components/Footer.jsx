@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "./footer.module.css";
 
 export default function Footer() {
   return (
-    <div>
-      <h1>This is a footer</h1>
-    </div>
+    <footer className={styles.footer}>
+      <p>&copy; 2025 Skill-Connect. All rights reserved.</p>
+    </footer>
   );
 }

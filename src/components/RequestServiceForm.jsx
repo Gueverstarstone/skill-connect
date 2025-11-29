@@ -27,7 +27,7 @@ export default function RequestServiceForm({ worker, onClose }) {
       return;
     }
 
-    // 🔥 Build the full request object required for worker dashboard
+    //full request object required for worker dashboard
     const requestBody = {
       workerId: worker.id,
       workerName: worker.name,
