@@ -177,7 +177,8 @@
       "googleMapsLink": "https://www.google.com/maps/..."
     }
   ],
-  "requests": [
+  "requests": [],
+  "archivedRequests": [
     {
       "id": "847c",
       "workerId": "1",
@@ -187,21 +188,20 @@
       "phone": "0711727265",
       "location": "Karen",
       "jobDescription": "I want my toilet sit fixed",
-      "status": "pending",
+      "status": "in-progress",
       "date": "2025-11-29T07:39:47.452Z"
     },
     {
-      "id": "1a4b",
-      "workerId": "1",
-      "workerName": "Joseph Mungai",
-      "speciality": "Software Developer",
-      "clientName": "sadsad",
+      "id": "f76d",
+      "workerId": "6",
+      "workerName": "Phineas Lesie",
+      "speciality": "Boda Boda Rider",
+      "clientName": "Zuri",
       "phone": "0711727265",
-      "location": "dsfsdfd",
-      "jobDescription": "werwerwer",
+      "location": "Mogadishu",
+      "jobDescription": "Bomb Delivery",
       "status": "completed",
-      "date": "2025-11-29T07:58:17.561Z"
+      "date": "2025-11-29T09:01:14.851Z"
     }
-  ],
-  "archivedRequests":[]
+  ]
 }
