@@ -1,0 +1,57 @@
+.container {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.status {
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+/* COLORS FOR EACH STATUS */
+.pending { background-color: #f39c12; }
+.accepted { background-color: #27ae60; }
+.in-progress { background-color: #2980b9; }
+.completed { background-color: #8e44ad; }
+.rejected { background-color: #c0392b; }
+
+/* BUTTONS */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.reject {
+  background: #e74c3c !important;
+}

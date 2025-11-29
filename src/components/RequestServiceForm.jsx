@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { createRequest } from "../api/api"; // import your API function
+import { createRequest } from "../api/api";
 import styles from "./requestServiceForm.module.css";
 
-export default function RequestServiceForm({ onClose }) {
+export default function RequestServiceForm({ worker, onClose }) {
   const [formData, setFormData] = useState({
     clientName: "",
     phone: "",
@@ -19,6 +19,7 @@ export default function RequestServiceForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { clientName, phone, location, jobDescription } = formData;
 
     if (!clientName || !phone || !location || !jobDescription) {
@@ -26,17 +27,34 @@ export default function RequestServiceForm({ onClose }) {
       return;
     }
 
+    // 🔥 Build the full request object required for worker dashboard
+    const requestBody = {
+      workerId: worker.id,
+      workerName: worker.name,
+      speciality: worker.speciality || worker.title,
+      clientName,
+      phone,
+      location,
+      jobDescription,
+      status: "pending",
+      date: new Date().toISOString()
+    };
+
     try {
       setLoading(true);
       setError("");
-      const savedRequest = await createRequest(formData);
+      const savedRequest = await createRequest(requestBody);
+
       alert("Request submitted successfully!");
       console.log("Saved request:", savedRequest);
 
-      // Reset form
-      setFormData({ clientName: "", phone: "", location: "", jobDescription: "" });
+      setFormData({
+        clientName: "",
+        phone: "",
+        location: "",
+        jobDescription: "",
+      });
 
-      // Close modal if needed
       onClose();
     } catch (err) {
       console.error(err);
@@ -51,6 +69,7 @@ export default function RequestServiceForm({ onClose }) {
       <div className={styles.modal}>
         <h2>Request Service</h2>
         {error && <p className={styles.error}>{error}</p>}
+
         <form onSubmit={handleSubmit}>
           <label>Client Name</label>
           <input
@@ -58,7 +77,6 @@ export default function RequestServiceForm({ onClose }) {
             name="clientName"
             value={formData.clientName}
             onChange={handleChange}
-            placeholder="Enter your full name"
             required
           />
 
@@ -68,7 +86,6 @@ export default function RequestServiceForm({ onClose }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="Enter your phone number"
             required
           />
 
@@ -78,7 +95,6 @@ export default function RequestServiceForm({ onClose }) {
             name="location"
             value={formData.location}
             onChange={handleChange}
-            placeholder="Enter your location"
             required
           />
 
@@ -87,7 +103,6 @@ export default function RequestServiceForm({ onClose }) {
             name="jobDescription"
             value={formData.jobDescription}
             onChange={handleChange}
-            placeholder="Describe the service you need"
             required
           />
 
@@ -95,6 +110,7 @@ export default function RequestServiceForm({ onClose }) {
             <button type="submit" disabled={loading}>
               {loading ? "Submitting..." : "Submit Request"}
             </button>
+
             <button type="button" onClick={onClose} className={styles.closeBtn}>
               Cancel
             </button>

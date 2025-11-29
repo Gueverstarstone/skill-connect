@@ -28,14 +28,27 @@ export default function Navbar() {
           </NavLink>
         </li>
 
+        {/* Client browsing workers */}
         <li className={styles.navItem}>
           <NavLink
-            to="/clients"
+            to="/workers"
             className={({ isActive }) =>
               isActive ? `${styles.link} ${styles.activeLink}` : styles.link
             }
           >
             Workers
+          </NavLink>
+        </li>
+
+        {/* Worker dashboard */}
+        <li className={styles.navItem}>
+          <NavLink
+            to="/requests"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.activeLink}` : styles.link
+            }
+          >
+            Requests
           </NavLink>
         </li>
       </ul>

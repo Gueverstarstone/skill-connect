@@ -7,8 +7,8 @@ export const getWorkers = async (page = 1, limit = 10) => {
   try {
     const res = await fetch(`${BASE_URL}/workers?_page=${page}&_limit=${limit}`);
     if (!res.ok) {
-      const errorDetails = await res.text();
-      throw new Error(`Failed to fetch workers. Error: ${errorDetails}`);
+      const details = await res.text();
+      throw new Error(`Failed to fetch workers: ${details}`);
     }
     return res.json();
   } catch (error) {
@@ -45,7 +45,7 @@ export const deleteWorker = async (id) => {
   }
 };
 
-// ------------------------ JOBS / REQUESTS ------------------------
+// ------------------------ REQUESTS / JOBS ------------------------
 
 // Get all requests
 export const getRequests = async () => {
@@ -62,16 +62,20 @@ export const getRequests = async () => {
 // Create a new client request
 export const createRequest = async (request) => {
   try {
+    const newRequest = {
+      ...request,
+      status: "pending",
+      date: new Date().toISOString(),
+    };
+
     const res = await fetch(`${BASE_URL}/requests`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        ...request, 
-        status: "pending", 
-        date: new Date().toISOString() // add timestamp
-      }),
+      body: JSON.stringify(newRequest),
     });
+
     if (!res.ok) throw new Error("Failed to create request");
+
     return res.json();
   } catch (error) {
     console.error("Error creating request:", error.message);
@@ -79,7 +83,7 @@ export const createRequest = async (request) => {
   }
 };
 
-// Update a request status
+// Update request STATUS only
 export const updateRequestStatus = async (id, status) => {
   try {
     const res = await fetch(`${BASE_URL}/requests/${id}`, {
@@ -87,10 +91,62 @@ export const updateRequestStatus = async (id, status) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     });
-    if (!res.ok) throw new Error("Failed to update request status");
+
+    if (!res.ok) throw new Error("Failed to update status");
+
     return res.json();
   } catch (error) {
-    console.error("Error updating request status:", error.message);
+    console.error("Error updating status:", error.message);
+    throw error;
+  }
+};
+
+// Delete a request (for completed or rejected requests)
+export const deleteRequest = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/requests/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) throw new Error("Failed to delete request");
+    return true;
+  } catch (error) {
+    console.error("Error deleting request:", error.message);
+    throw error;
+  }
+};
+
+// OPTIONAL — Update ANY fields in request (not only status)
+export const updateRequest = async (id, fields) => {
+  try {
+    const res = await fetch(`${BASE_URL}/requests/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    });
+
+    if (!res.ok) throw new Error("Failed to update request");
+
+    return res.json();
+  } catch (error) {
+    console.error("Error updating request:", error.message);
+    throw error;
+  }
+};
+
+// OPTIONAL — Assign a worker to a request
+export const assignRequestToWorker = async (requestId, workerId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/requests/${requestId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ workerId }),
+    });
+
+    if (!res.ok) throw new Error("Failed to assign request");
+
+    return res.json();
+  } catch (error) {
+    console.error("Error assigning request:", error.message);
     throw error;
   }
 };

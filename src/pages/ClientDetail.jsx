@@ -18,29 +18,6 @@ function ClientDetails() {
     return <div style={{ padding: 20 }}>Client not found.</div>;
   }
 
-  // Handle form submission
-  const handleRequestSubmit = (formData) => {
-    const newRequest = {
-      id: Date.now(), // unique id for request
-      workerId: client.id,
-      workerName: client.name,
-      workerTitle: client.title,
-      clientName: formData.clientName,
-      clientPhone: formData.phone,
-      location: formData.location,
-      jobDescription: formData.jobDescription,
-      status: "Pending",
-    };
-
-    // Save request to localStorage (or send to backend)
-    const savedRequests = JSON.parse(localStorage.getItem("serviceRequests")) || [];
-    savedRequests.push(newRequest);
-    localStorage.setItem("serviceRequests", JSON.stringify(savedRequests));
-
-    alert("Request submitted successfully!");
-    setShowForm(false); // close the form
-  };
-
   return (
     <div className="worker-details-container">
       {/* Top Header */}
@@ -105,7 +82,7 @@ function ClientDetails() {
         {/* Show the form modal */}
         {showForm && (
           <RequestServiceForm
-            onSubmit={handleRequestSubmit}
+            worker={client}     // 🔥 IMPORTANT — added worker info
             onClose={() => setShowForm(false)}
           />
         )}

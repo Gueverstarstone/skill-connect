@@ -46,14 +46,27 @@ function Header() {
             </NavLink>
           </li>
 
+          {/* Client browsing workers */}
           <li>
             <NavLink
-              to="/clients"
+              to="/workers"
               className={({ isActive }) =>
                 isActive ? "header-link active-header-link" : "header-link"
               }
             >
               Workers
+            </NavLink>
+          </li>
+
+          {/* Worker dashboard */}
+          <li>
+            <NavLink
+              to="/requests"
+              className={({ isActive }) =>
+                isActive ? "header-link active-header-link" : "header-link"
+              }
+            >
+              Requests
             </NavLink>
           </li>
         </ul>
