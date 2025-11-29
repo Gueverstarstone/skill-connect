@@ -7,8 +7,9 @@ import Workers from "./pages/Workers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Clients from "./pages/Clients";
-import ClientDetail from './pages/ClientDetail'
+import ClientDetail from "./pages/ClientDetail";
 import Header from "./components/Header";
+import AllRequests from "./pages/AllRequests";
 
 function App() {
   return (
@@ -23,7 +24,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/workers/:id" element={<ClientDetail />} />
+            {/* Client: browse workers */}
             <Route path="/workers" element={<Clients />} />
+            {/* Worker: see requests */}
+            <Route path="/requests" element={<AllRequests />} />
           </Routes>
         </div>
 
