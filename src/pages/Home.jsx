@@ -28,7 +28,7 @@ export default function Home() {
               Find qualified workers for jobs you need help with.
             </p>
             <div className={styles.btnWrapper}>
-              <span className={styles.findBtn}>Find a Worker</span>
+              <span className={styles.findBtn}>Find Worker</span>
             </div>
           </div>
         </Link>

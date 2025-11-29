@@ -3,7 +3,7 @@ import {
   getRequests,
   updateRequestStatus,
   deleteRequest,
-  archiveRequest
+  archiveRequest,
 } from "../api/api";
 import styles from "./allRequests.module.css";
 
@@ -26,11 +26,7 @@ export default function AllRequests() {
   // Handle status change
   async function changeStatus(req, newStatus) {
     try {
-      // -----------------------------------
-      // COMPLETED → ARCHIVE then REMOVE
-      // -----------------------------------
       if (newStatus === "completed") {
-
         // Force status: "completed" before archiving
         const completedRecord = { ...req, status: "completed" };
 
@@ -40,23 +36,17 @@ export default function AllRequests() {
         return;
       }
 
-      // -----------------------------------
-      // REJECTED → DELETE
-      // -----------------------------------
+      //reject
       if (newStatus === "rejected") {
         await deleteRequest(req.id);
         setRequests((prev) => prev.filter((r) => r.id !== req.id));
         return;
       }
 
-      // -----------------------------------
-      // NORMAL STATUS UPDATE (pending → accepted → in-progress)
-      // -----------------------------------
+      //normal status update
       await updateRequestStatus(req.id, newStatus);
       setRequests((prev) =>
-        prev.map((r) =>
-          r.id === req.id ? { ...r, status: newStatus } : r
-        )
+        prev.map((r) => (r.id === req.id ? { ...r, status: newStatus } : r))
       );
     } catch (error) {
       console.error("Failed to update or archive request:", error);
@@ -88,9 +78,15 @@ export default function AllRequests() {
                 {groupedRequests[status].map((req) => (
                   <div key={req.id} className={styles.card}>
                     <h3>{req.clientName}</h3>
-                    <p><strong>Phone:</strong> {req.phone}</p>
-                    <p><strong>Location:</strong> {req.location}</p>
-                    <p><strong>Description:</strong> {req.jobDescription}</p>
+                    <p>
+                      <strong>Phone:</strong> {req.phone}
+                    </p>
+                    <p>
+                      <strong>Location:</strong> {req.location}
+                    </p>
+                    <p>
+                      <strong>Description:</strong> {req.jobDescription}
+                    </p>
 
                     <p>
                       <strong>Date:</strong>{" "}
@@ -117,7 +113,9 @@ export default function AllRequests() {
                       )}
 
                       {req.status === "accepted" && (
-                        <button onClick={() => changeStatus(req, "in-progress")}>
+                        <button
+                          onClick={() => changeStatus(req, "in-progress")}
+                        >
                           Start
                         </button>
                       )}

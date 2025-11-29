@@ -1,70 +1,83 @@
 .container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #f3f4f6;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  font-family: "Arial", sans-serif;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
+  color: #1f2933;
 }
 
-.title {
+h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
+  margin-bottom: 25px;
+  color: #00966b;
+  text-align: center;
 }
 
-.subtitle {
-  font-size: 1rem;
-  color: #4b5563;
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 30px 0 20px;
+  color: #333;
+  text-align: center;
 }
-h1{
-  display: flex;
-  justify-content: center;
-}
+
 .workersGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px; /* Space between cards */
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
+
 .editBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 12px;
-  background-color: #0b7a52; /* green */
+  background-color: #00966b;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  z-index: 10;
+  transition: background 0.2s ease;
 }
 
 .editBtn:hover {
-  background-color: #1e7e34; /* darker green on hover */
-  transform: scale(1.05);
+  background-color: #007d57;
 }
+
 .deleteBtn {
-  position: absolute;
-  top: 50px; /* slightly below the edit button */
-  right: 10px;
-  padding: 5px 12px;
-  background-color: #dc2626; /* red */
+  background-color: #ef4444;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  z-index: 10;
+  transition: background 0.2s ease;
 }
 
 .deleteBtn:hover {
-  background-color: #b91c1c; /* darker red on hover */
-  transform: scale(1.05);
+  background-color: #b91c1c;
 }
 
+form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}

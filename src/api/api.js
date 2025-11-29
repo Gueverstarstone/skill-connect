@@ -1,9 +1,4 @@
-const BASE_URL = "http://localhost:3000"; // Change this when deploying
-
-// ----------------------------------------------------
-// ------------------------ WORKERS -------------------
-// ----------------------------------------------------
-
+const BASE_URL = "http://localhost:3000";
 // Get all workers
 export const getWorkers = async (page = 1, limit = 10) => {
   try {
@@ -50,10 +45,6 @@ export const deleteWorker = async (id) => {
     throw error;
   }
 };
-
-// ----------------------------------------------------
-// ------------------------ REQUESTS / JOBS -----------
-// ----------------------------------------------------
 
 // Get all requests
 export const getRequests = async () => {
@@ -159,11 +150,8 @@ export const assignRequestToWorker = async (requestId, workerId) => {
   }
 };
 
-// ----------------------------------------------------
-// ------------------------ ARCHIVE -------------------
-// ----------------------------------------------------
-
-// Add completed request to archive and delete from active list
+//archive
+//Add completed request to archive and delete from active list
 export const archiveRequest = async (request) => {
   try {
     console.log("Archiving request:", request);

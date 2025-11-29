@@ -1,61 +1,142 @@
+/* Overlay behind the modal */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 15px;
+  overflow-y: auto;
 }
 
+/* Modal container */
 .modal {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  position: relative;
+  animation: fadeIn 0.2s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal title */
 .modal h2 {
-  margin-bottom: 1rem;
+  margin: 0 0 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00966b;
   text-align: center;
 }
 
-.modal label {
+/* Error message */
+.error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Form elements */
+form label {
   display: block;
-  margin: 0.5rem 0 0.25rem;
-  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 500;
 }
 
-.modal input,
-.modal textarea {
+form input,
+form textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+form input:focus,
+form textarea:focus {
+  border-color: #00966b;
+  box-shadow: 0 0 0 3px rgba(0, 150, 107, 0.15);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Button container */
 .buttons {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.buttons button {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
-.buttons button:hover {
-  opacity: 0.9;
-}
-
-.closeBtn {
-  background: #f44336;
+/* Submit button */
+.buttons button[type="submit"] {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #00966b;
   color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.buttons button[type="submit"]:hover {
+  background-color: #007d57;
+}
+
+.buttons button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Cancel button */
+.closeBtn {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #e5e7eb;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.closeBtn:hover {
+  background-color: #d1d5db;
+}
+
+.closeBtn:active {
+  transform: translateY(1px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .modal {
+    padding: 20px;
+  }
+
+  .modal h2 {
+    font-size: 1.25rem;
+  }
 }

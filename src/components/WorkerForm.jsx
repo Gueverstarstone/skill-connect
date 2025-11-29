@@ -49,7 +49,6 @@ export default function WorkerForm({ onSubmit, initialData }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Build correct object (NO DUPLICATE IMAGES)
     const formattedWorker = {
       name: formData.name,
       title: formData.title,
@@ -68,7 +67,7 @@ export default function WorkerForm({ onSubmit, initialData }) {
 
     onSubmit(formattedWorker);
 
-    // Reset if adding new worker
+    // reset when adding new worker
     if (!initialData) {
       setFormData({
         name: "",
