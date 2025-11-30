@@ -17,6 +17,9 @@ export default function RequestServiceForm({ worker, onClose }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Kenyan phone validation regex
+  const kenyaPhoneRegex = /^(?:\+254|254|0)(7|1)\d{8}$/;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +30,12 @@ export default function RequestServiceForm({ worker, onClose }) {
       return;
     }
 
-    //full request object required for worker dashboard
+    //kenyan number validation
+    if (!kenyaPhoneRegex.test(phone)) {
+      alert("Please enter a valid Kenyan phone number.");
+      return;
+    }
+
     const requestBody = {
       workerId: worker.id,
       workerName: worker.name,
@@ -85,7 +93,12 @@ export default function RequestServiceForm({ worker, onClose }) {
             type="text"
             name="phone"
             value={formData.phone}
-            onChange={handleChange}
+            onChange={(e) => {
+              
+              const value = e.target.value.replace(/[^0-9+]/g, "");
+              setFormData({ ...formData, phone: value });
+            }}
+            placeholder="e.g. 0712345678"
             required
           />
 
