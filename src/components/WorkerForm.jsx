@@ -18,7 +18,12 @@ export default function WorkerForm({ onSubmit, initialData }) {
     googleMapsLink: "",
   });
 
-  // Pre-fill form if editing
+  const [error, setError] = useState("");
+
+  // Kenyan phone number regex
+  const kenyaPhoneRegex = /^(?:\+254|254|0)(7|1)\d{8}$/;
+
+  // Pre-fill form for editing
   useEffect(() => {
     if (initialData) {
       setFormData({
@@ -40,14 +45,28 @@ export default function WorkerForm({ onSubmit, initialData }) {
   }, [initialData]);
 
   const handleChange = (e) => {
+    let value = e.target.value;
+
+    if (e.target.name === "phone") {
+      value = value.replace(/[^0-9+]/g, "");
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setError("");
+
+    // Validate Kenyan phone number
+    if (formData.phone && !kenyaPhoneRegex.test(formData.phone)) {
+      setError("Please enter a valid Kenyan phone number.");
+      return;
+    }
 
     const formattedWorker = {
       name: formData.name,
@@ -90,6 +109,8 @@ export default function WorkerForm({ onSubmit, initialData }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2>{initialData ? "Edit Worker" : "Add New Worker"}</h2>
+
+      {error && <p className={styles.error}>{error}</p>}
 
       <div className={styles.row}>
         <div>
@@ -134,7 +155,7 @@ export default function WorkerForm({ onSubmit, initialData }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="+254-234-567-890"
+            placeholder="e.g. 0712345678"
           />
         </div>
       </div>
