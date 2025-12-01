@@ -12,14 +12,22 @@ The platform is built using React JS and CSS module  with json-server powering a
 - Send job requests directly to workers
 - Track the status of your job requests
 
+![Homepage Screenshot](/public/assets/client.png)
+![Homepage Screenshot](/public/assets/client2.png)
+![Homepage Screenshot](/public/assets/client3.png)
+
 ## 🛠 For Workers
 - View incoming job requests in a dashboard
 - Update job progress (Pending → In Progress → Completed)
+
+![Homepage Screenshot](/public/assets/workers.png)
   
 ## 🖥 For Admins
 - Manage workers (add, edit, delete)
 - Moderate customer reviews
 - View platform statistics and activities
+
+![Homepage Screenshot](/public/assets/admin.png)
 
 # 🧰 Tech Stack
 
