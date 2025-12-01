@@ -20,14 +20,16 @@ The platform is built using React JS and CSS module  with json-server powering a
 
 # 🧰 Tech Stack
 
-| 🏷️ Category          | 🛠️ Technology / Tool                        |
-|----------------------|--------------------------------------------|
-| ⚛️ Frontend          | React JS (Vite)                            |
-| 🎨 Styling           | CSS Modules                                 |
-| 📊 State Management  | TanStack Query (React Query)               |
-| 🛣️ Routing           | React Router v6                             |
-| 🗄️ Backend           | json-server (`db.json`)                     |
-| 📝 Forms             | React Hook Form          |
+| Category             | Technology / Tool                              |
+|---------------------|-----------------------------------------------|
+| ⚛️ Frontend          | React JS (Vite)                               |
+| 🎨 Styling           | CSS Modules                                   |
+| 📊 State Management  | TanStack Query (React Query)                  |
+| 🛣️ Routing           | React Router v6                               |
+| 🗄️ Backend           | JSON Server & Firebase (Authentication, Firestore, Storage) |
+| 📝 Forms             | React Hook Form                               |
+| 🚀 Deployment        | Netlify                                       |
+
 # 🚀 Getting Started
 
 Follow these steps to run the SkillConnect app locally.
@@ -174,9 +176,7 @@ Click Deploy Site
 
 # 🔮 Future Plans
 
-Planned features and improvements for upcoming versions:
-
-- 🔑 **User authentication** – Implement JWT or Firebase authentication  
+Planned features and improvements for upcoming versions: 
 - 🔔 **Real-time notifications** – Use Pusher or Firebase for instant updates  
 - 📅 **Worker availability calendar** – Show and manage worker schedules  
 - 🔍 **Advanced job filters** – Enable filtering by skills, location, ratings, etc.  
