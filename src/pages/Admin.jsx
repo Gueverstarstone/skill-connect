@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+// Admin.jsx
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 import WorkerForm from "../components/WorkerForm";
 import Clientpage from "../pages/Clientpage";
 import { addWorker, getWorkers, deleteWorker } from "../api/api";
@@ -7,15 +12,23 @@ import styles from "./admin.module.css";
 export default function Admin() {
   const [workers, setWorkers] = useState([]);
   const [editingWorker, setEditingWorker] = useState(null);
-  const formRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchWorkers() {
-      const data = await getWorkers();
-      setWorkers(data);
-    }
-    fetchWorkers();
-  }, []);
+    // Redirect to login page if not authenticated
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate('/login');
+      } else {
+        fetchWorkers();
+      }
+    });
+  }, [navigate]);
+
+  const fetchWorkers = async () => {
+    const data = await getWorkers();
+    setWorkers(data);
+  };
 
   const handleAddWorker = async (worker) => {
     try {
@@ -36,16 +49,14 @@ export default function Admin() {
 
   const handleEdit = (worker) => {
     setEditingWorker(worker);
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    window.scrollTo(0, 0);
   };
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this worker?")) {
       try {
-        await deleteWorker(id); // delete from backend
-        setWorkers(workers.filter((w) => w.id !== id)); // update UI
+        await deleteWorker(id);
+        setWorkers(workers.filter((w) => w.id !== id));
       } catch (error) {
         console.error("Error deleting worker:", error);
         alert("Failed to delete. Check server.");
@@ -56,49 +67,18 @@ export default function Admin() {
   return (
     <div className={styles.container}>
       <h1>Admin Dashboard</h1>
-
-      <div ref={formRef}>
-        <WorkerForm
-          key={editingWorker ? editingWorker.id : "new"}
-          onSubmit={handleAddWorker}
-          initialData={editingWorker}
-        />
-      </div>
-
+      <WorkerForm
+        key={editingWorker ? editingWorker.id : "new"}
+        onSubmit={handleAddWorker}
+        initialData={editingWorker}
+      />
       <h2>Saved Workers</h2>
       <div className={styles.workersGrid}>
         {workers.map((w) => (
-          <div key={w.id} style={{ position: "relative" }}>
+          <div key={w.id}>
             <Clientpage {...w} />
-
-            <div
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-              }}
-            >
-              <button onClick={() => handleEdit(w)} className={styles.editBtn}>
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(w.id)}
-                className={styles.deleteBtn}
-                style={{
-                  backgroundColor: "red",
-                  color: "white",
-                  border: "none",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Delete
-              </button>
-            </div>
+            <button onClick={() => handleEdit(w)}>Edit</button>
+            <button onClick={() => handleDelete(w.id)}>Delete</button>
           </div>
         ))}
       </div>

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
+import AdminLogin from "../components/AdminLogin";
 
 export default function Home() {
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+
   return (
-    
     <div className={styles.container}>
       <h1 className={styles.titleSpan}>
         Connect with Skilled Professionals Instantly
@@ -12,14 +14,29 @@ export default function Home() {
 
       <p>
         Discover trusted, verified professionals from every occupation across
-        Kenya. Skill Connect makes it easy to find the right expert, build
-        strong teams, or grow your own career—all with confidence and
-        transparency.
+        Kenya...
       </p>
 
       <p className={styles.subtitle}>Select how you'd like to continue:</p>
 
       <div className={styles.roles}>
+        {/* Admin Card */}
+        <div
+          onClick={() => setShowAdminLogin(true)}
+          className={`${styles.card} ${styles.admin}`}
+          style={{ cursor: "pointer" }}
+        >
+          <div>
+            <h2 className={styles.cardTitle}>Admin Panel</h2>
+            <p className={styles.cardText}>
+              Manage workers, jobs, and site settings from here.
+            </p>
+            <div className={styles.btnWrapper}>
+              <span className={styles.findBtn}>Go to Admin</span>
+            </div>
+          </div>
+        </div>
+
         {/* Client Card */}
         <Link to="/workers" className={styles.card}>
           <div>
@@ -32,20 +49,11 @@ export default function Home() {
             </div>
           </div>
         </Link>
-
-        {/* Admin Card */}
-        <Link to="/admin" className={`${styles.card} ${styles.admin}`}>
-          <div>
-            <h2 className={styles.cardTitle}>Admin Panel</h2>
-            <p className={styles.cardText}>
-              Manage workers, jobs, and site settings from here.
-            </p>
-            <div className={styles.btnWrapper}>
-              <span className={styles.findBtn}>Go to Admin</span>
-            </div>
-          </div>
-        </Link>
       </div>
+
+      {showAdminLogin && (
+        <AdminLogin onClose={() => setShowAdminLogin(false)} />
+      )}
     </div>
   );
 }

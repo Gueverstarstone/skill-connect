@@ -17,7 +17,7 @@ export default function Navbar() {
           </NavLink>
         </li>
 
-        <li className={styles.navItem}>
+        {/* <li className={styles.navItem}>
           <NavLink
             to="/admin"
             className={({ isActive }) =>
@@ -26,7 +26,7 @@ export default function Navbar() {
           >
             Admin
           </NavLink>
-        </li>
+        </li> */}
 
         {/* Client browsing workers */}
         <li className={styles.navItem}>

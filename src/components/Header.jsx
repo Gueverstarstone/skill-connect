@@ -35,17 +35,6 @@ function Header() {
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                isActive ? "header-link active-header-link" : "header-link"
-              }
-            >
-              Admin
-            </NavLink>
-          </li>
-
           {/* Client browsing workers */}
           <li>
             <NavLink

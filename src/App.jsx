@@ -4,12 +4,12 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import WorkerDetails from "./pages/WorkerDetails";
 import Workers from "./pages/Workers";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Clients from "./pages/Clients";
 import ClientDetail from "./pages/ClientDetail";
-import Header from "./components/Header";
 import AllRequests from "./pages/AllRequests";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,18 +22,27 @@ function App() {
 
         <div className="app-content">
           <Routes>
+            {/* Default redirect */}
             <Route path="/" element={<Navigate to="/home" replace />} />
+
+            {/* Public pages */}
             <Route path="/home" element={<Home />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/workers/:id" element={<ClientDetail />} />
-            {/* Client: browse workers */}
+
+            {/* Worker pages */}
             <Route path="/workers" element={<Clients />} />
-            {/* Worker: see requests */}
+            <Route path="/workers/:id" element={<WorkerDetails />} />
             <Route path="/requests" element={<AllRequests />} />
+
+            {/* Protected admin page */}
+            <Route path="/admin" element={<Admin />} />
+
+            {/* Catch all unknown routes */}
+            <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </div>
 
         <Footer />
+        <ToastContainer />
       </BrowserRouter>
     </div>
   );

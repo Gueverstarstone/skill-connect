@@ -200,6 +200,33 @@
       "img": {
         "src": "https://media.istockphoto.com/id/1849345050/photo/personal-instructor-and-athletic-woman-going-through-exercise-plans-in-a-gym.jpg?s=612x612&w=0&k=20&c=iGI2Se15zweVTHt31ENGqeXJlGcagS_XUqMhB_g8mvU="
       }
+    },
+    {
+      "id": "b0c0",
+      "name": "Njoki Waingo",
+      "title": "Architecture",
+      "country": "Voi",
+      "phone": "0756284624",
+      "ratings": "3.0",
+      "experience": "6 months",
+      "about": "A hardworking girl, ready for field exposure.",
+      "services": [
+        "a wide range of design",
+        "planning",
+        "and management tasks for building projects",
+        "from initial concept to final completion"
+      ],
+      "languages": [
+        "English",
+        "Swahili",
+        "kikuyu"
+      ],
+      "availability": "Weekend",
+      "hourlyRate": "500/hr",
+      "googleMapsLink": "",
+      "img": {
+        "src": "https://media.www.kent.ac.uk/nova/programmes/f671e1d8-7697-4937-82eb-381d25193dde/teOH0fVqwjx1rJOZtS1NZRVAUVImv3UIkfgAMSfb_1920w.jpg"
+      }
     }
   ],
   "requests": [
@@ -238,6 +265,18 @@
       "jobDescription": "I want a good looking website.",
       "status": "in-progress",
       "date": "2025-11-29T18:14:04.152Z"
+    },
+    {
+      "id": "2756",
+      "workerId": "b0c0",
+      "workerName": "Njoki Waingo",
+      "speciality": "Architecture",
+      "clientName": "Egonga",
+      "phone": "0718346874",
+      "location": "Gilgil",
+      "jobDescription": "Need a house plan.",
+      "status": "pending",
+      "date": "2025-11-30T20:37:10.565Z"
     }
   ],
   "archivedRequests": [
