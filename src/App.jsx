@@ -7,8 +7,13 @@ import Workers from "./pages/Workers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Clients from "./pages/Clients";
-import ClientDetail from './pages/ClientDetail'
+import ClientDetail from "./pages/ClientDetail";
 import Header from "./components/Header";
+
+// 👇 import these two directly
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import UserAuth from "./pages/UserAuth";
 
 function App() {
   return (
@@ -19,7 +24,14 @@ function App() {
 
         <div className="app-content">
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
+            {/* Default: go to auth landing (Login in nice background) */}
+            <Route path="/" element={<UserAuth />} />
+
+            {/* Standalone login & register (if you want direct URLs) */}
+            <Route path="/login" element={<UserAuth />} />
+            <Route path="/register" element={<UserAuth />} />
+
+            {/* Your other pages */}
             <Route path="/home" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/workers/:id" element={<ClientDetail />} />
