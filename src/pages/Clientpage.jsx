@@ -12,14 +12,22 @@ function Clientpage(props) {
     <div className="client-card">
       <div className="client">
         <div className="imageContainer">
-          <img className="mainImage" src={props.img.src} alt={props.img.alt || props.name} />
+          <img
+            className="mainImage"
+            src={props.img.src}
+            alt={props.img.alt || props.name}
+          />
         </div>
 
         <div className="infoContainer">
           <div>
             <img className="marker" src="/assets/marker.png" alt="marker" />
             <span className="country">{props.country}</span>
-            <a href={props.googleMapsLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={props.googleMapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View on Google maps
             </a>
           </div>

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig"; // Your Firebase setup
+import { db } from "../firebaseConfig";
+import RequestServiceForm from "../components/RequestServiceForm";
 import styles from "./workerdetails.module.css";
 
 export default function WorkerDetails() {
-  const { id } = useParams(); // Get worker ID from URL params
+  const { id } = useParams();
   const [worker, setWorker] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    // Fetch worker details from Firebase
     async function fetchWorker() {
       try {
         const docRef = doc(db, "workers", id);
@@ -25,7 +26,7 @@ export default function WorkerDetails() {
       }
     }
 
-    fetchWorker(); // Fetch data when the component mounts
+    fetchWorker();
   }, [id]);
 
   if (!worker) return <p>Loading worker details...</p>;
@@ -33,63 +34,76 @@ export default function WorkerDetails() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{worker.name}</h1>
+
       <img
-        src={worker.avatar || worker.profilePicture}
+        src={worker.img?.src || "default-avatar.jpg"}
         alt={worker.name}
         className={styles.avatar}
       />
 
       <div className={styles.detailsCard}>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Category:</span> {worker.category}
+        <p>
+          <span className={styles.highlight}>Title:</span> {worker.title}
         </p>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Speciality:</span> {worker.speciality}
+        <p>
+          <span className={styles.highlight}>About:</span> {worker.about}
         </p>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Experience:</span> {worker.experience} years
+        <p>
+          <span className={styles.highlight}>Experience:</span>{" "}
+          {worker.experience}
         </p>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Location:</span> {worker.location}
+        <p>
+          <span className={styles.highlight}>Country:</span> {worker.country}
         </p>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Completed Jobs:</span> {worker.completedJobs}
+        <p>
+          <span className={styles.highlight}>Availability:</span>{" "}
+          {worker.availability}
+        </p>
+        <p>
+          <span className={styles.highlight}>Hourly Rate:</span>{" "}
+          {worker.hourlyRate}
+        </p>
+        <p>
+          <span className={styles.highlight}>Phone:</span> {worker.phone}
+        </p>
+        <p>
+          <span className={styles.highlight}>Ratings:</span> {worker.ratings} ⭐
+        </p>
+        <p>
+          <span className={styles.highlight}>Languages:</span>{" "}
+          {worker.languages?.join(", ")}
+        </p>
+        <p>
+          <span className={styles.highlight}>Services:</span>{" "}
+          {worker.services?.join(", ")}
         </p>
       </div>
 
       <div className={styles.detailsCard}>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Bio:</span> {worker.bio}
-        </p>
-      </div>
-
-      <div className={styles.detailsCard}>
-        <p className={styles.subtitle}>
-          <span className={styles.highlight}>Skills:</span>
-        </p>
-        <ul className={styles.skillsList}>
-          {worker.skills?.map((skill, index) => (
-            <li key={index}>{skill}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className={styles.contactInfo}>
-        <p><span className={styles.highlight}>Email:</span> {worker.email || "Not available"}</p>
-        <p><span className={styles.highlight}>Phone:</span> {worker.phone || "Not available"}</p>
-      </div>
-
-      <div className={styles.socialLinks}>
-        {worker.socialLinks?.map((link, index) => (
-          <a key={index} href={link} target="_blank" rel="noopener noreferrer">
-            {link}
+        <p>
+          <span className={styles.highlight}>Location:</span>
+          <a
+            href={worker.googleMapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Google Maps
           </a>
-        ))}
+        </p>
       </div>
 
       <div className={styles.profileButtons}>
-        <button>Request Service</button>
+        <button onClick={() => setShowForm(true)}>Request Service</button>
       </div>
+
+      {showForm && (
+        <div className={styles.formOverlay}>
+          <RequestServiceForm
+            worker={worker}
+            onClose={() => setShowForm(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,83 +1,78 @@
 import React, { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import styles from "./requestServiceForm.module.css";
 
 export default function RequestServiceForm({ worker, onClose }) {
-  const [formData, setFormData] = useState({
-    clientName: "",
-    phone: "",
-    location: "",
-    jobDescription: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const kenyaPhoneRegex = /^(?:\+254|254|0)(7|1)\d{8}$/;
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [details, setDetails] = useState("");
+  const [clientLocation, setClientLocation] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { clientName, phone, location, jobDescription } = formData;
-    if (!clientName || !phone || !location || !jobDescription) return alert("Fill all fields");
-    if (!kenyaPhoneRegex.test(phone)) return alert("Invalid Kenyan phone number");
-
-    const requestBody = {
-      workerId: worker.id,
-      workerName: worker.name,
-      speciality: worker.speciality || worker.title,
-      clientName,
-      phone,
-      location,
-      jobDescription,
-      status: "pending",
-      date: new Date().toISOString()
-    };
-
     try {
-      setLoading(true);
-      await addDoc(collection(db, "requests"), requestBody);
+      await addDoc(collection(db, "requests"), {
+        clientName: name,
+        phone: contact,
+        jobDescription: details,
+        clientLocation: clientLocation,
+        workerName: worker.name,
+        workerId: worker.id,
+        date: Date.now(),
+        status: "pending",
+      });
+
       alert("Request submitted successfully!");
-      setFormData({ clientName: "", phone: "", location: "", jobDescription: "" });
       onClose();
     } catch (err) {
-      console.error(err);
-      setError("Failed to submit request");
-    } finally {
-      setLoading(false);
+      console.error("Error saving request:", err);
+      alert("Failed to submit request.");
     }
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h2>Request Service</h2>
-        {error && <p className={styles.error}>{error}</p>}
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
+        <h2>Request Service for {worker.name}</h2>
+
         <form onSubmit={handleSubmit}>
-          <label>Client Name</label>
-          <input type="text" name="clientName" value={formData.clientName} onChange={handleChange} required />
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-          <label>Phone Number</label>
-          <input type="text" name="phone" value={formData.phone} onChange={(e) => {
-            const value = e.target.value.replace(/[^0-9+]/g, "");
-            setFormData({ ...formData, phone: value });
-          }} placeholder="e.g. 0712345678" required />
+          <input
+            type="text"
+            placeholder="Contact"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            required
+          />
 
-          <label>Location</label>
-          <input type="text" name="location" value={formData.location} onChange={handleChange} required />
+          <input
+            type="text"
+            placeholder="Location"
+            value={clientLocation}
+            onChange={(e) => setClientLocation(e.target.value)}
+            required
+          />
 
-          <label>Job Description</label>
-          <textarea name="jobDescription" value={formData.jobDescription} onChange={handleChange} required />
+          <textarea
+            placeholder="Job Description"
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+            required
+          />
 
-          <div className={styles.buttons}>
-            <button type="submit" disabled={loading}>{loading ? "Submitting..." : "Submit Request"}</button>
-            <button type="button" onClick={onClose} className={styles.closeBtn}>Cancel</button>
-          </div>
+          <button type="submit">Submit Request</button>
         </form>
+
+        <button className={styles.closeButton} onClick={onClose}>Close</button>
       </div>
     </div>
   );
