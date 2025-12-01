@@ -152,6 +152,26 @@ Follow these guidelines when adding new features or maintaining the project.
 - **Prettier** – automatic code formatting  
 - **ESLint** – code linting and error detection  
 - Maintain a **clean component architecture** for readability and scalability
+# 🚀 Deploying to Netlify
+
+## Connect Netlify
+1. Go to [Netlify](https://www.netlify.com/)  
+2. Click **New Site from Git**  
+3. Select your GitHub repository
+
+## Set Build Options
+- **Build command:**  
+```bash
+npm run build
+```
+## Deploy
+
+Click Deploy Site
+
+### Live Demo
+
+[https://your-skillconnect-site.netlify.app](https://workcon.netlify.app/)
+
 # 🔮 Future Plans
 
 Planned features and improvements for upcoming versions:
