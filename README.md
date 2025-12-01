@@ -26,6 +26,9 @@ The platform is built using React JS and CSS module  with json-server powering a
 - Manage workers (add, edit, delete)
 - Moderate customer reviews
 - View platform statistics and activities
+ ### Admin Login (Demo Only)
+- **Email:** admin@gmail.com  
+- **Password:** admin123
 
 ![Homepage Screenshot](/public/assets/admin.png)
 
