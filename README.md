@@ -3,6 +3,9 @@ SkillConnect is a modern web platform that connects skilled workers with clients
 The platform is built using React JS and CSS module  with json-server powering a lightweight backend for rapid development.
 # 🌟 Features
 
+![Homepage Screenshot](/public/assets/land.png)
+
+
 ## 👥 For Clients
 - Browse and search skilled workers by category or location
 - View detailed worker profiles (skills, experience, ratings)
